@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TAM Scoring Agent</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 640px; margin: 40px auto; padding: 0 20px; }
+  h1 { font-size: 1.4rem; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .tabs button { padding: 8px 14px; border: 1px solid #8884; border-radius: 6px; background: transparent; cursor: pointer; }
+  .tabs button.active { background: #6366f1; color: white; border-color: #6366f1; }
+  form { display: flex; flex-direction: column; gap: 12px; }
+  label { font-size: 0.9rem; font-weight: 600; }
+  select, input, textarea { padding: 8px; font-size: 1rem; border-radius: 6px; border: 1px solid #8884; }
+  textarea { min-height: 120px; }
+  button[type="submit"] { margin-top: 8px; padding: 10px; font-size: 1rem; border-radius: 6px; border: none; background: #6366f1; color: white; cursor: pointer; }
+  #result { margin-top: 20px; padding: 16px; border-radius: 8px; border: 1px solid #8884; display: none; white-space: pre-wrap; font-family: monospace; }
+  .hidden { display: none; }
+  #error { color: #dc2626; margin-top: 10px; display: none; }
+</style>
+</head>
+<body>
+<h1>TAM Scoring Agent</h1>
+<p>Is this company part of my addressable universe?</p>
+
+<div class="tabs">
+  <button id="tab-structured" class="active">Structured</button>
+  <button id="tab-freetext">Free text</button>
+</div>
+
+<form id="structured-form">
+  <label>Company Type
+    <select name="company_type" required>
+      <option>Startup</option>
+      <option>Scale-up</option>
+      <option>PE-backed growth company</option>
+      <option>Public tech company</option>
+      <option>Traditional enterprise</option>
+    </select>
+  </label>
+  <label>Employee Count
+    <input type="number" name="employee_count" min="0" required />
+  </label>
+  <label>Funding Status
+    <select name="funding_status" required>
+      <option>VC-backed</option>
+      <option>Bootstrapped</option>
+      <option>PE-backed</option>
+      <option>Public</option>
+      <option>Unknown</option>
+    </select>
+  </label>
+  <label>Revenue Band (optional)
+    <select name="revenue_band">
+      <option value="">-- not provided --</option>
+      <option>$1M-$100M</option>
+      <option>&lt;$1M</option>
+      <option>&gt;$100M</option>
+      <option>Unknown</option>
+    </select>
+  </label>
+  <label>Geography
+    <select name="geography" required>
+      <option>Global/remote hiring</option>
+      <option>US</option>
+      <option>Europe</option>
+      <option>India</option>
+      <option>SEA/Middle East</option>
+      <option>Other</option>
+    </select>
+  </label>
+  <button type="submit">Score Company</button>
+</form>
+
+<form id="freetext-form" class="hidden">
+  <label>Describe the company
+    <textarea name="text" placeholder="e.g. Acme is a VC-backed startup with about 200 employees, based remotely across the US and Europe, ~$10M ARR." required></textarea>
+  </label>
+  <button type="submit">Score Company</button>
+</form>
+
+<div id="error"></div>
+<div id="result"></div>
+
+<script>
+  const tabStructured = document.getElementById('tab-structured');
+  const tabFreetext = document.getElementById('tab-freetext');
+  const formStructured = document.getElementById('structured-form');
+  const formFreetext = document.getElementById('freetext-form');
+  const resultEl = document.getElementById('result');
+  const errorEl = document.getElementById('error');
+
+  tabStructured.onclick = () => {
+    tabStructured.classList.add('active');
+    tabFreetext.classList.remove('active');
+    formStructured.classList.remove('hidden');
+    formFreetext.classList.add('hidden');
+  };
+  tabFreetext.onclick = () => {
+    tabFreetext.classList.add('active');
+    tabStructured.classList.remove('active');
+    formFreetext.classList.remove('hidden');
+    formStructured.classList.add('hidden');
+  };
+
+  async function submitForm(url, payload) {
+    resultEl.style.display = 'none';
+    errorEl.style.display = 'none';
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.detail || 'Request failed');
+      }
+      resultEl.textContent = JSON.stringify(data, null, 2);
+      resultEl.style.display = 'block';
+    } catch (err) {
+      errorEl.textContent = err.message;
+      errorEl.style.display = 'block';
+    }
+  }
+
+  formStructured.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(formStructured);
+    const payload = {
+      company_type: fd.get('company_type'),
+      employee_count: Number(fd.get('employee_count')),
+      funding_status: fd.get('funding_status'),
+      geography: fd.get('geography'),
+    };
+    const revenueBand = fd.get('revenue_band');
+    if (revenueBand) payload.revenue_band = revenueBand;
+    submitForm('/score', payload);
+  });
+
+  formFreetext.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(formFreetext);
+    submitForm('/score/freetext', { text: fd.get('text') });
+  });
+</script>
+</body>
+</html>
