@@ -1,6 +1,6 @@
 # Prime Care: Brand Voice Guide
 
-_Discovered from getprime.care on 7 Oct 2026. Sources: home, /about, /coverage, /blog, 7 blog posts, terms, privacy. WhatsApp lifecycle comms are not yet included; that section is pending the CSV._
+_Discovered from getprime.care on 7 Oct 2026. Sources: home, /about, /coverage, /blog, 7 blog posts, terms, privacy, plus the advisor WhatsApp template sheet (8 call-outcome variations)._
 
 ---
 
@@ -98,7 +98,7 @@ Corporate   ●○○○○  Human         ("we hear this a lot", "just want to 
 | **FAQ** | Direct answer first ("Yes." / "No."), then the condition | "Is there really zero waiting period? Yes. Your OPD wallet is active the moment…" |
 | **Support / contact** | Human and reassuring | "Whether you have a question… or just want to talk to a human - reach us anytime." |
 | **Legal (T&C, privacy)** | Plain, numbered, precise. Brand warmth is not required here, but plain language is. | |
-| **WhatsApp lifecycle** | _Pending CSV._ Expected: short, warm, one action per message, benefit and number first | |
+| **WhatsApp (sales advisor)** | Personal, warm and brief. One message, one ask. Lead with the customer's situation and back it with a number. See §8. | "Hi Priya, looks like our call dropped. Sorry about that!" |
 
 ## 6. Consistency and risk flags
 
@@ -130,6 +130,170 @@ These are places where the current copy works against the "honest" positioning. 
 
 **Blog product tie-in:** one short "Where Prime Care fits" section that quotes the concrete number (e.g. "cashless dental up to ₹2,000 a year") plus a disclaimer that third-party options mentioned are independent.
 
----
+## 8. WhatsApp advisor messages
 
-_Next: add WhatsApp stage-by-stage voice rules and templates once the comms CSV is provided._
+These are sent by a Health Advisor after a sales call, one per call outcome. They're the most personal touchpoint the brand has, so they should sound like the website's friend-who-read-the-fine-print, typing on a phone.
+
+### 8.1 Audit of the current templates
+
+What works: every message has a clear trigger, a warm opening, a soft single ask and a named human advisor. "Not Interested" and "Disconnected" already strike the right tone.
+
+| # | Issue | Templates affected | Fix |
+|---|---|---|---|
+| W1 | **Off-message: "claims process".** Prime's core promise is that there are *no* claims: you scan the Alyve QR and pay from your wallet. Mentioning a "simple claims process" undercuts the cashless pillar and sounds like generic insurance. | Needs More Info, Comparing Options | Say "how you pay: scan your Alyve QR, no bills to submit". |
+| W2 | **Name drift: "Primecare"** (one word) appears in 5 of the 8 templates. "Prime Care Plan" uses a capital P on "plan". | All | Use **Prime Care** (two words), and lower-case "plan". |
+| W3 | **No numbers.** The website leads with ₹333/month, no waiting period and the 15-day refund. The templates give none of them, so the customer has to click to find out why Prime Care is different. | Intent Shown, Needs More Info, Comparing, Value-Led | Add a 2–3 bullet recap with the price, no waiting period and the refund condition. |
+| W4 | **Generic, interchangeable copy.** "Thanks for your interest… happy to clarify… do have a look" could come from any insurer. The pillars (everyday care, cashless, dental and eye care) are missing. | Needs More Info, Follow Up | Name the everyday benefits: doctor visits, medicines, tests, dental, eye care. |
+| W5 | **Formal, email-style sign-off.** "Warm regards" / "Regards" and "Looking forward to assisting you" read like email. | All | Drop the valediction. End on the ask, then the signature block. |
+| W6 | **Promise mismatch.** "I've attached the health plan details tailored to your needs" and "I've shared the OPD plan details" are followed by a generic plans link. | Intent Shown, Disconnected | Say what's actually sent: "Here are the plan details." Only say "tailored" if a recommendation is actually attached. |
+| W7 | **Comparison copy doesn't use the real differentiators.** No waiting period, dental and vision in every plan, transparent limits, no agent commissions and the refund are all left out. | Comparing Options | Give the customer the questions to ask every provider, with Prime's answers. |
+| W8 | **Formatting debris.** There are leading spaces before lines and signatures, and inconsistent " — " spacing. | All | Clean these up before submitting the templates to WhatsApp Business for approval. |
+| W9 | **Unsubstantiated social proof.** "Many families choose Primecare", "what our customers value most". | Comparing, Value-Led | Use a concrete everyday cost example instead, or a real stat you can back up. |
+
+### 8.2 WhatsApp writing rules
+
+1. **Open with the customer's name and context** from the call ("thanks for your time today", "looks like our call dropped").
+2. **Keep the body to 40–90 words.** That's one screen on a phone, with no scrolling.
+3. **Use bullets (•) for facts:** at most 3 bullets, each starting with the benefit.
+4. **Include one link per message.** Use `https://getprime.care/#plans`, or `/coverage` when the customer is comparing. Add UTM tags per variation if you're tracking conversion.
+5. **Make one ask, and end with it,** as a question the customer can answer in a word ("Call or chat here?").
+6. **Use 0–1 emoji in the body.** 📞 is fine in the signature.
+7. **Keep conditions in the same sentence:** "Full refund within 15 days if you haven't used any benefits." Never just "no questions asked".
+8. **Don't say "claim", "policy", "premium" or "insurance"** about Prime Care itself (see flag #1).
+9. **Use this signature block:**
+   ```
+   {Advisor Name}
+   Health Advisor · Prime Care
+   📞 {Phone Number}
+   ```
+10. **WhatsApp Business:** messages sent more than 24 hours after the customer's last reply need Meta-approved templates. Placeholders become `{{1}}`, `{{2}}` and so on. Follow Up and Value-Led Nudge will likely be classed as *Marketing*, so add an opt-out quick-reply ("Stop updates").
+
+### 8.3 Rewritten templates
+
+**1. Intent Shown.** _Interested on the call; wants to review._
+```
+Hi {Customer Name}, thanks for your time today!
+
+As promised, here are the plan details: https://getprime.care/#plans
+
+Quick recap of what we discussed:
+• Doctor visits, medicines, tests, dental & eye care, paid cashless from your OPD wallet
+• From ₹333/month, with no waiting period
+• Full refund within 15 days if you haven't used any benefits
+
+Have a look and send me any questions here. Happy to jump on a quick call too.
+
+{Advisor Name}
+Health Advisor · Prime Care
+📞 {Phone Number}
+```
+
+**2. Interested: Needs More Info.** _Has open questions._
+```
+Hi {Customer Name}, thanks for your interest in Prime Care!
+
+Happy to clear up anything before you decide. The questions people ask most:
+• What's covered? Doctor visits, medicines, tests, dental and eye care
+• How do I pay? Scan your Alyve QR at a partner clinic, lab or pharmacy. No bills to submit, no reimbursement
+• What does it cost? From ₹3,999/year (about ₹333/month)
+
+Would a quick call help, or shall I answer here?
+
+{Advisor Name}
+Health Advisor · Prime Care
+📞 {Phone Number}
+```
+
+**3. Interested: Comparing Options.** _Weighing other providers._
+```
+Hi {Customer Name}, comparing before you decide is the right call 👍
+
+A few things worth checking with every plan, and where Prime Care stands:
+• Waiting period: none
+• Dental & eye care: included in every plan
+• Paying: cashless at partner clinics, labs and pharmacies
+• Limits: every rupee listed upfront at https://getprime.care/coverage
+
+Send me any plan you're looking at and I'll help you compare side by side.
+
+{Advisor Name}
+Health Advisor · Prime Care
+📞 {Phone Number}
+```
+
+**4. Interested: Ready to Enroll.** _Nudge to purchase._
+```
+Hi {Customer Name}, great to hear you're ready to go ahead!
+
+Here's your link to get started: https://getprime.care/#plans
+
+It takes about 2 minutes: name, phone, email and PAN. No medical tests. Once you're active, your Alyve QR and plan card come straight to you.
+
+Stuck anywhere? Just reply here and I'll help.
+
+{Advisor Name}
+Health Advisor · Prime Care
+📞 {Phone Number}
+```
+
+**5. Not Interested.** _Close warmly, leave the door open._
+```
+Hi {Customer Name}, thank you for your time today. I completely understand it's not the right moment.
+
+If things change, everything's here: https://getprime.care/#plans
+
+Wishing you and your family good health. I'm just a message away.
+
+{Advisor Name}
+Health Advisor · Prime Care
+📞 {Phone Number}
+```
+
+**6. Disconnected.** _Call dropped or couldn't connect._
+```
+Hi {Customer Name}, looks like our call dropped. Sorry about that!
+
+Here are the plan details we were talking about: https://getprime.care/#plans
+
+When's a good time to reconnect? Or call me directly whenever suits you.
+
+{Advisor Name}
+Health Advisor · Prime Care
+📞 {Phone Number}
+```
+
+**7. Follow Up.** _A few days later, no reply._
+```
+Hi {Customer Name}, just checking in on the Prime Care details I shared.
+
+Did you get a chance to look? I can answer anything here, or walk you through the plans in a quick call, whichever's easier.
+
+{Advisor Name}
+Health Advisor · Prime Care
+📞 {Phone Number}
+```
+
+**8. Value-Led Nudge.** _Second or third touch for a warm lead who has gone quiet._
+```
+Hi {Customer Name}, hope you're doing well!
+
+A quick thought: one doctor visit, a blood test and a strip of medicines can easily come to ₹1,200, and most health insurance won't pay for any of it. Prime Care does, cashless, from ₹333/month.
+
+Want me to show you how it works in a 5-minute call? Details: https://getprime.care/#plans
+
+{Advisor Name}
+Health Advisor · Prime Care
+📞 {Phone Number}
+```
+
+### 8.4 Gaps in the sequence
+
+The sheet covers the pre-sale call outcomes only. To keep the voice consistent across the whole customer lifecycle, these stages still need templates:
+
+- **Payment done, activation pending:** set the expectation for the up-to-2-working-days window (see flag #2).
+- **Plan active:** the Alyve QR is ready, with how to use it the first time.
+- **First-use nudge:** "Book your free Annual Health Check-up" (₹1,500 comes from the diagnostics wallet; say so).
+- **Refund window closing:** a day-12 check-in before the 15-day free-look period ends.
+- **Wallet balance or mid-year reminder:** unused balances don't carry forward.
+- **Renewal:** 30, 15 and 3 days before expiry.
+- **Payment link abandoned:** the customer started enrolment but didn't pay.
